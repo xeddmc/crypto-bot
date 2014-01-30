@@ -1,13 +1,12 @@
 import urllib
-import urllib2
+import urllib.request
 import json
 import time
 import hmac,hashlib
-
+import cmath
 
 def createTimeStamp(datestr, format="%Y-%m-%d %H:%M:%S"):
     return time.mktime(time.strptime(datestr, format))
-
 
 class Cryptsy:
     def __init__(self, APIKey, Secret):
