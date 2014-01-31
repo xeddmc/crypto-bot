@@ -2,7 +2,8 @@ import urllib, json, time
 import itertools
 from itertools import count
 #Choose ID for market desired
-ID = "132" #DOGE/BTC
+ID = "3" #LTC/BTC
+Coin ="LTC" 
 url = "http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid="+ID
 
 #Function to unpack JSON data, retrieve last trade price and time of trade
@@ -10,10 +11,8 @@ def unpack():
     response = urllib.urlopen(url);
     load = json.loads(response.read())
     data = json.dumps(load, sort_keys=True, indent=4)
-         #del load["buyorders"]
-         #price = [p for p in load if load.find('last') ==1]
-    print data
-    return data
+    
+    return load
     pass
 
    
@@ -21,14 +20,16 @@ def unpack():
 outfile=open('Data.txt','w')
 outfile.write('Market \t Current Price \t' + str(time.localtime) + '\t \n')
 
-#Generator to take price readings every 10s and write to file
+#Generator to take price readings every 30s and write to file
 while 1:
     new = unpack()
-    outfile.write(new)
+    a=new['return'].get('markets')
+    price=a[Coin].get('lasttradeprice')
+    outfile=open('Data.txt', 'a')
+    outfile.write(price + '\n')
     
-
-    time.sleep(10)
-    print unpack()
-
+    
+    time.sleep(30)
+    print price
 
 
