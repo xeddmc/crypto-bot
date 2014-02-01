@@ -23,8 +23,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Algorithm Plan.py" />
-    <Compile Include="GetData.py" />
+    <Compile Include="GetDataCryptsy.py" />
     <Compile Include="Functions.py" />
+    <Compile Include="GetDataMTGox.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
